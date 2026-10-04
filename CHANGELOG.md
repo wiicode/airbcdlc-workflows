@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+- **Sources steering library** (`core/steering/sources/`): 36 field-tested data-collection tactics in four categories (foundation · monitoring · analysis · access) plus a README that places them against plan §12 M1 (adapter descriptors, sources-discovery, reconciliation) and `inventory/sources.yaml`.
+- **Lint**: `lint:scope-header` now accepts a leading YAML frontmatter block carrying `category:` as the scope declaration; the `<!-- scope: ... -->` rule is unchanged for every other steering file.
+- **Sanitization** on the copied library: the example name pair in `analysis-issue-escalations.md` is now a fictional placeholder; the tenant device count in `analysis-endpoint-fleet-inventory.md` is a qualitative band.
+
 ## 0.0.1 — 2026-10-02
 - Pre-M0 skeleton: layout, plan v0.3, addenda A/B, PCI posture ladder, compliance-automation steering, People inventory steering, framework profile schema, the field guide as method source. No engine yet.
 
