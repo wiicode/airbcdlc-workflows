@@ -26,14 +26,6 @@ const FULL_SECTIONS = [
   "Engagement Triggers", "Success Indicators",
 ];
 
-// A steering file that opens with a YAML frontmatter block carrying `category:` declares its scope there
-// (the sources library ships frontmatter, often longer than 400 chars, which must not be prefixed).
-function frontmatterScope(text: string): boolean {
-  if (!/^---\r?\n/.test(text)) return false;
-  const end = text.indexOf("\n---", 3);            // closing fence; `category:` must sit before it
-  return end !== -1 && /^category:\s*\S/m.test(text.slice(0, end));
-}
-
 export function lint(root = HARNESS_ROOT): Hit[] {
   const hits: Hit[] = [];
 
@@ -41,9 +33,9 @@ export function lint(root = HARNESS_ROOT): Hit[] {
   for (const f of mdFiles(join(root, "core/steering"))) {
     if (basename(f) === "README.md") continue;
     const text = readFileSync(f, "utf8");
-    if (!frontmatterScope(text) && !/^<!--\s*scope:/m.test(text.slice(0, 400))) {
+    if (!/^<!--\s*scope:/m.test(text.slice(0, 400))) {
       hits.push({ sensor: "lint:scope-header", severity: "amber", file: relative(root, f),
-        detail: "steering file has no <!-- scope: ... --> header (or YAML frontmatter with category:)." });
+        detail: "steering file has no <!-- scope: ... --> header." });
     }
   }
 
