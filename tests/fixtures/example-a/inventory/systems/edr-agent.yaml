@@ -1,0 +1,12 @@
+slug: edr-agent
+name: EDR agent
+kind: endpoint-agent
+purpose: Endpoint detection and response on privileged endpoints
+lifecycle: active
+owner: Security
+implements: [EP1]
+freshness: 2026-10-03
+provenance:
+  source: fixture example-a
+  added: 2026-10-03
+  updated: 2026-10-03

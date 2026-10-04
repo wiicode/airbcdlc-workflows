@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://airbcdlc.dev/schema/inventory-vendor",
+  "title": "Inventory — vendor",
+  "description": "A third party. Privileged access, data access, and oversight state are the facts the third-party branches turn on.",
+  "type": "object",
+  "required": ["slug", "name", "lifecycle", "provenance"],
+  "properties": {
+    "slug": { "$ref": "_defs#/$defs/slug" },
+    "name": { "type": "string" },
+    "purpose": { "type": "string" },
+    "privileged_access": {
+      "enum": ["none", "limited", "fleet", "unknown"],
+      "description": "Privileged access into the fleet or customer environments."
+    },
+    "data_access": { "type": "array", "items": { "type": "string" } },
+    "oversight": {
+      "enum": ["signed", "in-progress", "blocked", "none"],
+      "description": "Vendor-management relationship state. 'blocked' or 'none' is usually the governance-gap branch."
+    },
+    "lifecycle": { "enum": ["evaluating", "active", "offboarding", "retired"] },
+    "freshness": { "$ref": "_defs#/$defs/date" },
+    "provenance": { "$ref": "_defs#/$defs/provenance" }
+  },
+  "additionalProperties": false
+}

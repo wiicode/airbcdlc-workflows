@@ -1,0 +1,33 @@
+{
+  "description": "Leak-test denylist. Core ships the method, never the author's own program. A match in the shipped tree fails CI. Patterns are JS regex source, matched case-insensitively unless noted. Extend per release; this is the single home (drift canary).",
+  "scan_globs": [
+    "core/steering/**/*.md",
+    "core/schemas/**/*.json",
+    "core/agents/**/*.md",
+    "core/tools/**/*.ts",
+    "core/stages/**/*.md",
+    "core/scopes/**/*.md",
+    "compliance/**/*.md",
+    ".claude/**/*.md"
+  ],
+  "forbidden": [
+    { "name": "airtable-base-id", "pattern": "\\bapp[A-Za-z0-9]{14}\\b" },
+    { "name": "airtable-table-id", "pattern": "\\btbl[A-Za-z0-9]{14}\\b" },
+    { "name": "airtable-field-id", "pattern": "\\bfld[A-Za-z0-9]{14}\\b" },
+    { "name": "airtable-select-id", "pattern": "\\bsel[A-Za-z0-9]{14}\\b" },
+    { "name": "airtable-record-id", "pattern": "\\brec[A-Za-z0-9]{14}\\b" },
+    { "name": "drata-dcf-code", "pattern": "\\bDCF-\\d+\\b" },
+    { "name": "bento-brand", "pattern": "\\bBento\\b" },
+    { "name": "licensed-text-marker", "pattern": "\\[LICENSED-TEXT\\]" }
+  ],
+  "licensed_text_guard": {
+    "forbidden_committed_dirs": [".rbc/texts/"],
+    "note": "A PHYSICAL-PATH guard, not a content grep: no file may be committed under these dirs. Doctrine is free to name the path in prose."
+  },
+  "allow": [
+    "the author's own program",
+    "never the author's own",
+    "customer names"
+  ],
+  "note": "docs/ is excluded from the scan on purpose: it carries the plan and provenance, where the author's platform is named as context. Shipped STEERING, SCHEMAS, AGENTS, STAGES and CODE must be clean."
+}

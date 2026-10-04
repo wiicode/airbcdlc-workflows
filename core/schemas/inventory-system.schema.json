@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://airbcdlc.dev/schema/inventory-system",
+  "title": "Inventory — system",
+  "description": "A system, service, or tool in the estate. Tool views are evidence about this entity, not the entity. Evidence and findings hang here; it implements[] controls.",
+  "type": "object",
+  "required": ["slug", "name", "lifecycle", "provenance"],
+  "properties": {
+    "slug": { "$ref": "_defs#/$defs/slug" },
+    "name": { "type": "string" },
+    "kind": { "type": "string", "description": "e.g. saas, internal-service, endpoint-agent, data-store, edge." },
+    "purpose": { "type": "string" },
+    "lifecycle": { "enum": ["planned", "piloting", "active", "deprecating", "retired"] },
+    "owner": { "type": "string" },
+    "implements": {
+      "type": "array",
+      "items": { "$ref": "_defs#/$defs/control_code" },
+      "description": "Controls this system implements — the tool→control edge."
+    },
+    "data_classes": { "type": "array", "items": { "type": "string" } },
+    "freshness": { "$ref": "_defs#/$defs/date", "description": "When last confirmed from a source. Staleness is an exception." },
+    "provenance": { "$ref": "_defs#/$defs/provenance" }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://airbcdlc.dev/schema/inventory-device",
+  "title": "Inventory — device",
+  "description": "An endpoint. Whether the company can attest it is the fact several branches turn on.",
+  "type": "object",
+  "required": ["slug", "attestable", "lifecycle", "provenance"],
+  "properties": {
+    "slug": { "$ref": "_defs#/$defs/slug" },
+    "owner_person": { "$ref": "_defs#/$defs/slug" },
+    "ownership": { "enum": ["company", "byod", "contractor", "unknown"] },
+    "attestable": {
+      "enum": ["yes", "no", "unknown"],
+      "description": "Can the company see and attest this device's posture? The privileged-access branches hang here."
+    },
+    "managed_by": { "type": "string", "description": "MDM/management tool slug, or none." },
+    "lifecycle": { "enum": ["provisioned", "active", "lost", "retired"] },
+    "freshness": { "$ref": "_defs#/$defs/date" },
+    "provenance": { "$ref": "_defs#/$defs/provenance" }
+  },
+  "additionalProperties": false
+}

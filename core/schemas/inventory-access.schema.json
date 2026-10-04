@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://airbcdlc.dev/schema/inventory-access",
+  "title": "Inventory — access",
+  "description": "A grant: who (person/vendor) can reach what (system), how, from what device posture. The join that makes privileged-access-from-unattested-device a visible fact.",
+  "type": "object",
+  "required": ["slug", "principal", "system", "provenance"],
+  "properties": {
+    "slug": { "$ref": "_defs#/$defs/slug" },
+    "principal": { "$ref": "_defs#/$defs/slug", "description": "person or vendor slug." },
+    "system": { "$ref": "_defs#/$defs/slug" },
+    "privilege": { "enum": ["read", "write", "admin", "privileged"] },
+    "auth": { "type": "string", "description": "e.g. sso-mfa, long-lived-token, password-only." },
+    "from_device_posture": { "enum": ["managed", "byod", "any", "unknown"] },
+    "lifecycle": { "enum": ["active", "suspended", "revoked"] },
+    "freshness": { "$ref": "_defs#/$defs/date" },
+    "provenance": { "$ref": "_defs#/$defs/provenance" }
+  },
+  "additionalProperties": false
+}

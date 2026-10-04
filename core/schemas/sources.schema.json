@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://airbcdlc.dev/schema/sources",
+  "title": "Sources registry",
+  "description": "Every source the program reads from: inventory feeds, control sources, framework texts, recon (reserved). Carries license class and pins. The registry is how 'no source, no fact' is enforced and how licensed text is kept out of the repo.",
+  "type": "object",
+  "required": ["sources"],
+  "properties": {
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["slug", "kind", "license_class"],
+        "properties": {
+          "slug": { "$ref": "_defs#/$defs/slug" },
+          "kind": {
+            "enum": ["inventory-feed", "control-source", "framework-text", "recon", "compliance-platform", "file", "mcp"]
+          },
+          "license_class": {
+            "enum": ["public-domain", "free-copyrighted", "licensed-purchase"],
+            "description": "licensed-purchase texts are indexed locally under gitignored .rbc/texts/ and NEVER committed."
+          },
+          "pin": { "type": "string", "description": "Version/edition pin." },
+          "reads": { "type": "array", "items": { "type": "string" }, "description": "What this source observes." },
+          "publishes": { "type": "array", "items": { "type": "string" }, "description": "For platforms: compiled views pushed. No source publishes into authored content." },
+          "authorization": { "$ref": "_defs#/$defs/authorization", "description": "Required for recon and active sources." },
+          "note": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

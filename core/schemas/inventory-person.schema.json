@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://airbcdlc.dev/schema/inventory-person",
+  "title": "Inventory — person",
+  "description": "A person with a relationship to the company. The roster is the denominator for acknowledgments and training. Retire, never delete.",
+  "type": "object",
+  "required": ["slug", "name", "relationship", "lifecycle", "provenance"],
+  "properties": {
+    "slug": { "$ref": "_defs#/$defs/slug" },
+    "name": { "type": "string" },
+    "relationship": { "enum": ["employee", "contractor", "vendor-staff", "service-account-owner", "other"] },
+    "lifecycle": { "enum": ["prospective", "onboarding", "active", "offboarding", "retired"] },
+    "team": { "type": "string" },
+    "remote": { "type": "boolean", "description": "Relevant to BYOD and remote-hire branches." },
+    "identity_verified_at_hire": {
+      "enum": ["yes", "no", "unknown"],
+      "description": "The fact the remote-worker-impersonation branch turns on."
+    },
+    "device_posture": { "enum": ["managed", "byod", "mixed", "unknown"] },
+    "freshness": { "$ref": "_defs#/$defs/date" },
+    "provenance": { "$ref": "_defs#/$defs/provenance" }
+  },
+  "additionalProperties": false
+}

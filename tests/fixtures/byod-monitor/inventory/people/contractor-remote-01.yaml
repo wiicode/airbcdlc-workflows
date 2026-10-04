@@ -1,0 +1,9 @@
+slug: contractor-remote-01
+name: Remote contractor (unverified)
+relationship: contractor
+lifecycle: active
+remote: true
+identity_verified_at_hire: "no"
+device_posture: byod
+freshness: 2026-10-03
+provenance: { source: fixture byod-monitor, added: 2026-10-03, updated: 2026-10-03 }

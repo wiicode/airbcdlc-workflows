@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://airbcdlc.dev/schema/risk-parent",
+  "title": "Parent risk",
+  "description": "A harm plus the standing condition that makes it possible, written as one sentence. Resolves up to a top-level harm through an intermediate-harm term. Lists its branches.",
+  "type": "object",
+  "required": ["id", "statement", "mechanism", "intermediate_harm", "top_harm", "severity", "branches", "provenance"],
+  "properties": {
+    "id": { "$ref": "_defs#/$defs/risk_id" },
+    "statement": {
+      "type": "string",
+      "minLength": 20,
+      "description": "[who] suffers [what] because [standing condition]. If it cannot be written this way, it is not a risk."
+    },
+    "mechanism": {
+      "type": "string",
+      "minLength": 10,
+      "description": "The standing condition every branch hangs from. Usually a design choice or policy, often implicit."
+    },
+    "intermediate_harm": { "$ref": "_defs#/$defs/intermediate_harm" },
+    "top_harm": { "$ref": "_defs#/$defs/harm_id" },
+    "consequence": { "$ref": "_defs#/$defs/consequence" },
+    "severity": { "$ref": "_defs#/$defs/severity" },
+    "status": { "$ref": "_defs#/$defs/register_status" },
+    "branches": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "_defs#/$defs/branch_id" },
+      "description": "The distinct paths from mechanism to harm. One is usually the governance gap."
+    },
+    "tolerance": {
+      "$ref": "_defs#/$defs/tolerance_id",
+      "description": "Which tolerance this parent's residual compares to. Absent = the missing-governance-input finding."
+    },
+    "residual": {
+      "type": "object",
+      "description": "The aggregate of branch residuals (field guide). Computed, not asserted.",
+      "properties": {
+        "likelihood": { "$ref": "_defs#/$defs/likelihood" },
+        "severity": { "$ref": "_defs#/$defs/severity" },
+        "computed_on": { "$ref": "_defs#/$defs/date" }
+      },
+      "additionalProperties": false
+    },
+    "provenance": { "$ref": "_defs#/$defs/provenance" }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,12 @@
+slug: support-vendor
+name: Third-party support provider
+purpose: Tier-2 customer support with privileged endpoint access
+privileged_access: fleet
+data_access: [customer-endpoints, session-recordings]
+oversight: blocked
+lifecycle: active
+freshness: 2026-10-03
+provenance:
+  source: fixture example-a
+  added: 2026-10-03
+  updated: 2026-10-03

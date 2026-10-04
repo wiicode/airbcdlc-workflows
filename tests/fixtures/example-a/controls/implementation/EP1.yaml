@@ -1,0 +1,10 @@
+code: EP1
+implementation_pct: 70
+coverage: active
+owner: Security
+health: healthy
+implemented_by: []
+provenance:
+  source: fixture example-a
+  added: 2026-10-03
+  updated: 2026-10-03

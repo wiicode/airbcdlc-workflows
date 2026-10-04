@@ -1,0 +1,10 @@
+code: VM1
+implementation_pct: 20
+coverage: blocked
+owner: Security
+health: failing
+implemented_by: []
+provenance:
+  source: fixture example-a
+  added: 2026-10-03
+  updated: 2026-10-03

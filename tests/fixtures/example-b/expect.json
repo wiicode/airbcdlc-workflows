@@ -1,0 +1,10 @@
+{
+  "describes": "Field guide §6.3 — the developer-token row, corrected. The branch that matters (authorized clone to an unmanaged device) can only be avoided; token hygiene (R-022b) is real but does not touch it. The secrets scanner is a finding about a different control, never the risk.",
+  "sensors_silent": ["harm-sentence","single-response","control-link","owner-outside-security","tolerance-referenced","finding-not-risk","premise-moved","decision-complete"],
+  "sensors_fire": [],
+  "traces": [
+    { "node": "R-022a", "harm": "H1" },
+    { "node": "source-control", "harm": "H1" },
+    { "node": "F-0001", "harm": null }
+  ]
+}

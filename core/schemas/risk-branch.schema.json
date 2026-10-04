@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://airbcdlc.dev/schema/risk-branch",
+  "title": "Risk branch",
+  "description": "One distinct way the mechanism produces the harm. Branches are separate when they take different responses. Carries exactly ONE disposition; owned outside security.",
+  "type": "object",
+  "required": ["id", "parent", "statement", "likelihood", "owner", "provenance"],
+  "properties": {
+    "id": { "$ref": "_defs#/$defs/branch_id" },
+    "parent": { "$ref": "_defs#/$defs/risk_id" },
+    "statement": { "type": "string", "minLength": 15, "description": "The path from mechanism to harm, one sentence." },
+    "evidence": { "type": "string", "description": "What rates the likelihood: a prior incident, a precedent, a vendor advisory, present state." },
+    "likelihood": { "$ref": "_defs#/$defs/likelihood" },
+    "owner": {
+      "type": "string",
+      "description": "The business owner outside the security function whose objective is harmed. They choose the response."
+    },
+    "is_governance_gap": {
+      "type": "boolean",
+      "default": false,
+      "description": "True for the branch that is a risk with no owner, no tolerance, or no decision — usually underneath the rest."
+    },
+    "intermediate_harm": {
+      "$ref": "_defs#/$defs/intermediate_harm",
+      "description": "Set only when this branch rolls up to a DIFFERENT intermediate harm than its parent — one mechanism can produce different harms on different branches. Omit to inherit the parent's."
+    },
+    "top_harm": {
+      "$ref": "_defs#/$defs/harm_id",
+      "description": "Set only when this branch backs out to a DIFFERENT top-level harm than its parent (e.g. a remote-operative branch under a data-loss parent rolls to regulatory/legal). Omit to inherit the parent's."
+    },
+    "disposition": {
+      "$ref": "_defs#/$defs/disposition",
+      "description": "EXACTLY ONE. Set by the decision forum, never pre-set by the author. A fallback belongs in the decision record, not as a second disposition here."
+    },
+    "decision": {
+      "$ref": "_defs#/$defs/decision_id",
+      "description": "The decision record that set the disposition."
+    },
+    "controls": {
+      "type": "array",
+      "items": { "$ref": "_defs#/$defs/control_code" },
+      "description": "The control(s) that treat this branch. Required at intake for a Mitigate branch; empty = a finding about the catalogue."
+    },
+    "csf": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^[A-Z]{2}\\.[A-Z]{2}-[0-9]{2}$" },
+      "description": "CSF 2.0 subcategory refs the response lands in. The recorded decision itself is ID.RA-06."
+    },
+    "scenarios": {
+      "type": "array",
+      "items": { "$ref": "_defs#/$defs/scenario_id" },
+      "description": "Illustrations attached to this branch (precedent and/or constructed)."
+    },
+    "residual": {
+      "type": "object",
+      "description": "After the response. For Accept, equals inherent. Recomputed from control health.",
+      "properties": {
+        "likelihood": { "$ref": "_defs#/$defs/likelihood" },
+        "note": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "provenance": { "$ref": "_defs#/$defs/provenance" }
+  },
+  "additionalProperties": false
+}

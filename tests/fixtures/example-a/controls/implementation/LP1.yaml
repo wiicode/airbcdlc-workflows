@@ -1,0 +1,10 @@
+code: LP1
+implementation_pct: 50
+coverage: active
+owner: Security
+health: degraded
+implemented_by: []
+provenance:
+  source: fixture example-a
+  added: 2026-10-03
+  updated: 2026-10-03

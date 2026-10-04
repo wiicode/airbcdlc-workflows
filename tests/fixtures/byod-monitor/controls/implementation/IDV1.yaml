@@ -1,0 +1,6 @@
+code: IDV1
+implementation_pct: 30
+coverage: planning
+owner: Security
+health: healthy
+provenance: { source: fixture byod-monitor, added: 2026-10-03, updated: 2026-10-03 }

@@ -1,0 +1,9 @@
+slug: code-and-data
+name: Source and customer data platform
+kind: saas
+purpose: Holds source and customer data; reachable from the internet
+lifecycle: active
+owner: CTO
+implements: [CA1]
+freshness: 2026-10-03
+provenance: { source: fixture byod-monitor, added: 2026-10-03, updated: 2026-10-03 }

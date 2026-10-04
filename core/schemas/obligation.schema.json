@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://airbcdlc.dev/schema/obligation",
+  "title": "Obligation",
+  "description": "Compliance as an input, never an origin. A requirement someone outside the company places on it, with its source, counterparty, the quoted requirement, cost, and a disposition — passed through the Why gate before it becomes a control.",
+  "type": "object",
+  "required": ["id", "source", "requirement", "why", "disposition", "provenance"],
+  "properties": {
+    "id": { "$ref": "_defs#/$defs/obligation_id" },
+    "source": {
+      "enum": ["contract", "regulation", "standard", "insurer", "customer", "internal-commitment"],
+      "description": "Who imposes it. A standard adopted voluntarily is still an obligation once committed to."
+    },
+    "counterparty": { "type": "string", "description": "Who holds us to it." },
+    "requirement": {
+      "type": "string",
+      "minLength": 10,
+      "description": "The quoted requirement, verbatim where licensing allows, else a faithful paraphrase with a reference."
+    },
+    "reference": { "type": "string", "description": "Clause / criterion / section id. Never the licensed text itself in core." },
+    "why": {
+      "type": "string",
+      "minLength": 10,
+      "description": "The Why gate: the harm this obligation maps to, in the tree's terms. An obligation that maps to no harm is a cost decision, stated as one."
+    },
+    "maps_to_harm": { "$ref": "_defs#/$defs/harm_id" },
+    "cost": { "type": "string", "description": "What satisfying it costs — effort, money, a practice change." },
+    "disposition": {
+      "enum": ["satisfy", "satisfy-via-existing-control", "accept-gap", "negotiate", "decline"],
+      "description": "What the company decided to do about it. Recorded like any decision."
+    },
+    "controls": {
+      "type": "array",
+      "items": { "$ref": "_defs#/$defs/control_code" },
+      "description": "Controls that satisfy it. The direction is controls → criteria, never criteria → controls."
+    },
+    "decision": { "$ref": "_defs#/$defs/decision_id" },
+    "provenance": { "$ref": "_defs#/$defs/provenance" }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://airbcdlc.dev/schema/decision",
+  "title": "Decision record",
+  "description": "The record of ID.RA-06. One disposition on one branch (or a parent), with owner, date, residual, review, premises, and ADR fields. Approval scrutiny scales with irreversibility.",
+  "type": "object",
+  "required": ["id", "subject", "disposition", "owner", "date", "premises", "provenance"],
+  "properties": {
+    "id": { "$ref": "_defs#/$defs/decision_id" },
+    "subject": {
+      "type": "string",
+      "description": "The branch or parent this decides. A branch_id, risk_id, or obligation_id."
+    },
+    "disposition": { "$ref": "_defs#/$defs/disposition" },
+    "owner": { "type": "string", "description": "The business owner who chose. Outside security." },
+    "date": { "$ref": "_defs#/$defs/date" },
+    "rationale": { "type": "string" },
+    "residual": { "type": "string", "description": "What is being carried after the response. For Accept, equals inherent." },
+    "review_trigger": {
+      "type": "string",
+      "description": "The condition or date that re-opens this. For Accept, required (owner, date, review trigger)."
+    },
+    "review_by": { "$ref": "_defs#/$defs/date" },
+    "fallback": {
+      "type": "string",
+      "description": "A named fallback ('avoid; if refused on cost, mitigate with X and record the residual'). Never a second disposition."
+    },
+    "premises": {
+      "type": "array",
+      "minItems": 1,
+      "description": "The inventory facts, control states and tolerance this decision rests on. Sensors re-open the decision when one moves.",
+      "items": {
+        "type": "object",
+        "required": ["kind", "ref", "state"],
+        "properties": {
+          "kind": { "enum": ["inventory-fact", "control-state", "tolerance", "scenario", "obligation", "external"] },
+          "ref": { "type": "string", "description": "Slug/code/id of the thing the premise rests on." },
+          "state": { "type": "string", "description": "The value at decision time. A sensor compares the current value to this." },
+          "note": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "reversibility": {
+      "enum": ["reversible", "costly-to-reverse", "one-way-door"],
+      "description": "oDeshi ADR field. A one-way door gets a pre-mortem and explicit human authorization; a reversible choice does not."
+    },
+    "decision_drivers": { "type": "array", "items": { "type": "string" } },
+    "validation": {
+      "type": "object",
+      "description": "How we would know this decision was wrong.",
+      "properties": {
+        "failure_signal": { "type": "string" },
+        "review_by": { "$ref": "_defs#/$defs/date" }
+      },
+      "additionalProperties": false
+    },
+    "dissent": {
+      "type": "array",
+      "description": "First-class output. The overruled position is often the one the auditor asks about.",
+      "items": {
+        "type": "object",
+        "required": ["who", "position", "revisit_trigger"],
+        "properties": {
+          "who": { "type": "string" },
+          "position": { "type": "string" },
+          "resolution": { "type": "string", "description": "overruled by X because Y" },
+          "revisit_trigger": { "type": "string", "description": "The condition that would prove the dissenter right." }
+        },
+        "additionalProperties": false
+      }
+    },
+    "alternative": {
+      "type": "object",
+      "description": "Steelmanned rejected alternative. Required once at Moderate tier, 1–2 at Complex.",
+      "properties": {
+        "option": { "type": "string" },
+        "strongest_argument": { "type": "string" },
+        "why_rejected": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "reopened": {
+      "type": "array",
+      "description": "Appended when a premise moves. Each entry is an audit line, not a deletion.",
+      "items": {
+        "type": "object",
+        "required": ["on", "reason"],
+        "properties": {
+          "on": { "$ref": "_defs#/$defs/date" },
+          "reason": { "type": "string", "description": "Which premise moved, from what to what." }
+        },
+        "additionalProperties": false
+      }
+    },
+    "authorized": {
+      "$ref": "_defs#/$defs/authorization",
+      "description": "Required for a one-way-door decision and for any Accept. Set only by a human action."
+    },
+    "provenance": { "$ref": "_defs#/$defs/provenance" }
+  },
+  "additionalProperties": false
+}

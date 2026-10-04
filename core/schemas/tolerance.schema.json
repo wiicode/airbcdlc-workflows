@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://airbcdlc.dev/schema/tolerance",
+  "title": "Tolerance statement",
+  "description": "One sentence, written by leadership: 'The company will / will not carry [exposure] beyond [threshold].' Five to seven total. Every risk's residual compares to one.",
+  "type": "object",
+  "required": ["id", "statement", "harm", "owner", "provenance"],
+  "properties": {
+    "id": { "$ref": "_defs#/$defs/tolerance_id" },
+    "statement": {
+      "type": "string",
+      "minLength": 15,
+      "pattern": "\\b[Ww]ill\\b",
+      "description": "The company will / will not carry <exposure> beyond <threshold>. Readable and signable by a non-technical executive."
+    },
+    "harm": { "$ref": "_defs#/$defs/harm_id" },
+    "owner": { "type": "string", "description": "The executive who wrote and signs it." },
+    "reviewed": { "$ref": "_defs#/$defs/date" },
+    "review_cadence": { "enum": ["quarterly", "semiannual", "annual"], "default": "quarterly" },
+    "authorized": { "$ref": "_defs#/$defs/authorization" },
+    "breached_since": {
+      "$ref": "_defs#/$defs/date",
+      "description": "Set when roll-up exceeds threshold. Two consecutive quarters breached without a decision forces review."
+    },
+    "provenance": { "$ref": "_defs#/$defs/provenance" }
+  },
+  "additionalProperties": false
+}

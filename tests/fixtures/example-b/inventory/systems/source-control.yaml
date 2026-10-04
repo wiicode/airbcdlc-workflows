@@ -1,0 +1,9 @@
+slug: source-control
+name: Source control platform
+kind: saas
+purpose: Hosts source code; long-lived tokens permitted
+lifecycle: active
+owner: CTO
+implements: [CI1, SC1]
+freshness: 2026-10-03
+provenance: { source: fixture example-b, added: 2026-10-03, updated: 2026-10-03 }

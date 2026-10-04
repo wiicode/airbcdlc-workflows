@@ -1,0 +1,14 @@
+{
+  "describes": "The Intake Reflex on 'we'll monitor BYOD'. The monitor is placed post-compromise on R-031a with its blind spots written down; four branches are named including R-031d — the remote-operative/laptop-farm branch that crosses to H2 (regulatory/legal) and tolerance T-02. The monitor never stands in for the decision.",
+  "sensors_silent": [
+    "harm-sentence","single-response","control-link","owner-outside-security",
+    "tolerance-referenced","orphan-node","finding-not-risk","monitor-complete",
+    "decision-complete","premise-moved","residual-from-control-health"
+  ],
+  "sensors_fire": [],
+  "traces": [
+    { "node": "R-031d", "harm": "H2" },
+    { "node": "R-031a", "harm": "H1" },
+    { "node": "code-and-data", "harm": "H1" }
+  ]
+}

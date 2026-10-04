@@ -1,0 +1,4 @@
+<!-- scope: engine · deterministic checks at gates; advisory by default; each with a rule stated verbatim. -->
+# sensors
+
+Risk core: orphan-node · premise-moved · residual-recomputed-from-control-health · harm-sentence · owner-outside-security · single-response · control-link · tolerance-referenced · decision-complete · monitor-complete · finding-not-risk · intake-refusals. Controls: control-has-harm · baseline-is-doable · scope-has-exclusions · metrics-are-outcomes · no-over-commitment. Compliance: control-justified · crosswalk-direction · mapping-status · fw-id-exists · source-pinned · licensed-text-not-committed · pci-scope-vs-chd · pci-rank-never-suppressed · pci-timeframe-window · sla-only-exploitable · exploitable-has-basis · capacity-exceeded · ca-write-boundary · snapshot-age · insurance-attestation-drift · commitment-without-category · category-without-commitment. Process: circuit-breaker · health-check sweep.

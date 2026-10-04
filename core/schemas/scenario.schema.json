@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://airbcdlc.dev/schema/scenario",
+  "title": "Scenario (illustration)",
+  "description": "An illustration attached to a branch, of exactly two kinds, never blurred: a real cited precedent, or a constructed scenario labeled as such. A branch no one has felt will not be decided.",
+  "type": "object",
+  "required": ["id", "kind", "branch", "narrative", "provenance"],
+  "properties": {
+    "id": { "$ref": "_defs#/$defs/scenario_id" },
+    "kind": { "enum": ["precedent", "constructed"] },
+    "branch": { "$ref": "_defs#/$defs/branch_id" },
+    "narrative": {
+      "type": "string",
+      "minLength": 20,
+      "description": "Precedent: what happened, quoting the source, no embellishment. Constructed: one paragraph in the company's own terms, ending at the top harm."
+    },
+    "industry": { "type": "string" },
+    "source_url": {
+      "type": "string",
+      "description": "Required for a precedent. No URL = no claim."
+    },
+    "source_date": { "$ref": "_defs#/$defs/date" },
+    "told_in_our_terms": {
+      "type": "boolean",
+      "description": "Constructed scenarios are grounded strictly in inventory — never assume tools they don't have."
+    },
+    "label": {
+      "type": "string",
+      "description": "Constructed scenarios carry 'Illustrative — not a real event' on every surface, including published views."
+    },
+    "likelihood_effect": {
+      "$ref": "_defs#/$defs/likelihood",
+      "description": "A same-industry precedent moves the branch's likelihood to precedent or probable."
+    },
+    "provenance": { "$ref": "_defs#/$defs/provenance" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "kind": { "const": "precedent" } }, "required": ["kind"] },
+      "then": { "required": ["source_url", "source_date"] }
+    },
+    {
+      "if": { "properties": { "kind": { "const": "constructed" } }, "required": ["kind"] },
+      "then": { "required": ["label"], "properties": { "told_in_our_terms": { "const": true } } }
+    }
+  ],
+  "additionalProperties": false
+}

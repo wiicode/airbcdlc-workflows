@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://airbcdlc.dev/schema/control-library",
+  "title": "Control (library)",
+  "description": "Something the company does, on purpose, to reduce likelihood or impact of a harm. The spine of the program. Compiled per program from shape + doctrine + the company's own inventory — never a bundled catalogue.",
+  "type": "object",
+  "required": ["code", "title", "statement", "prevents", "capability", "provenance"],
+  "properties": {
+    "code": { "$ref": "_defs#/$defs/control_code" },
+    "title": { "type": "string" },
+    "statement": {
+      "type": "string",
+      "minLength": 15,
+      "description": "What the company does. In its own words, not a framework's."
+    },
+    "prevents": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "_defs#/$defs/intermediate_harm" },
+      "description": "The intermediate harm(s) this control exists to prevent — the tree's upward edge. A control with none is a finding about the catalogue."
+    },
+    "capability": {
+      "type": "string",
+      "description": "The coverage expectation in a domain this control satisfies (e.g. 'anti-malware on endpoints')."
+    },
+    "domain": { "type": "string", "description": "The control domain (e.g. identity-access, endpoint, vendor)." },
+    "risk_note": {
+      "type": "string",
+      "description": "The harm(s) this control exists to prevent, in harm-sentence form — the single field that converts a checklist into a risk catalogue."
+    },
+    "origin": {
+      "enum": ["risk", "compliance", "incident", "adopted"],
+      "description": "A compliance-origin control is marked so; it still earns its place by the harm it prevents."
+    },
+    "provenance": { "$ref": "_defs#/$defs/provenance" }
+  },
+  "additionalProperties": false
+}

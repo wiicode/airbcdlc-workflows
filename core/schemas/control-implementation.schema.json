@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://airbcdlc.dev/schema/control-implementation",
+  "title": "Control (implementation)",
+  "description": "The living state of a library control in this program: how far along, who owns it, which tools implement it, its coverage status. Owned by security.",
+  "type": "object",
+  "required": ["code", "implementation_pct", "coverage", "owner", "provenance"],
+  "properties": {
+    "code": { "$ref": "_defs#/$defs/control_code" },
+    "implementation_pct": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "An honest number. The register prioritizes by this — lowest first."
+    },
+    "coverage": { "$ref": "_defs#/$defs/coverage" },
+    "owner": { "type": "string", "description": "Security owns implementation state." },
+    "implemented_by": {
+      "type": "array",
+      "items": { "$ref": "_defs#/$defs/slug" },
+      "description": "Inventory system slugs that implement this control. The tool→control edge of the tree."
+    },
+    "health": {
+      "enum": ["healthy", "degraded", "failing", "unknown"],
+      "description": "Drives branch residual: a mitigated risk resting on failing controls is quietly back to inherent."
+    },
+    "last_tested": { "$ref": "_defs#/$defs/date" },
+    "provenance": { "$ref": "_defs#/$defs/provenance" }
+  },
+  "additionalProperties": false
+}

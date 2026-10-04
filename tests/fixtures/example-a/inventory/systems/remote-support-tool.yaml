@@ -1,0 +1,12 @@
+slug: remote-support-tool
+name: Remote support tool
+kind: saas
+purpose: Remote control of customer endpoints by support contractors
+lifecycle: active
+owner: Head of Support
+implements: [IA2, LP1]
+freshness: 2026-10-03
+provenance:
+  source: fixture example-a
+  added: 2026-10-03
+  updated: 2026-10-03

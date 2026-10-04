@@ -1,0 +1,6 @@
+code: CA1
+implementation_pct: 60
+coverage: active
+owner: Security
+health: healthy
+provenance: { source: fixture byod-monitor, added: 2026-10-03, updated: 2026-10-03 }

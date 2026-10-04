@@ -1,0 +1,7 @@
+# licensed framework texts are indexed locally and never committed (plan §11, license class `licensed-purchase`)
+.rbc/texts/
+# bun / node
+node_modules/
+dist/
+dist-release/
+.DS_Store

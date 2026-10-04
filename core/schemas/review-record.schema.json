@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://airbcdlc.dev/schema/review-record",
+  "title": "Adversarial review record",
+  "description": "The business-owner reviewer's output shape (from oDeshi). A bare 'no concerns' is rejected; the reviewer must test failure modes and explain any absence. Forwarded verbatim.",
+  "type": "object",
+  "required": ["subject", "reviewer", "failure_modes_tested", "verdict", "provenance"],
+  "properties": {
+    "subject": { "type": "string", "description": "The breakdown, decision, or record under review." },
+    "reviewer": { "type": "string", "description": "The reviewing persona (business-owner) or human." },
+    "failure_modes_tested": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["mode", "result"],
+        "properties": {
+          "mode": { "type": "string" },
+          "result": { "type": "string" },
+          "evidence": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "top_problem": { "type": "string", "description": "#1 problem, stack-ranked. Or an explained absence." },
+    "additional_concerns": { "type": "array", "items": { "type": "string" } },
+    "confidence": { "enum": ["high", "medium", "low"], "description": "Low confidence is valuable signal, not failure." },
+    "verdict": { "enum": ["accept", "accept-with-conditions", "reject"] },
+    "conditions": { "type": "array", "items": { "type": "string" } },
+    "circuit_breaker": {
+      "type": "object",
+      "description": "Bounded iteration. Three cycles or two hours, then one of four exits.",
+      "properties": {
+        "cycles": { "type": "integer", "minimum": 0 },
+        "tripped": { "type": "boolean" },
+        "exit": { "enum": ["escalate", "narrow-scope", "accept-with-dissent", "stop"] }
+      },
+      "additionalProperties": false
+    },
+    "provenance": { "$ref": "_defs#/$defs/provenance" }
+  },
+  "additionalProperties": false
+}

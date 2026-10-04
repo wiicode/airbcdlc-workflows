@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://airbcdlc.dev/schema/finding",
+  "title": "Finding",
+  "description": "Evidence that a control is not holding. Input to a risk assessment. NEVER a risk, never a register row. Links to the control it tests. SLA-bound only when it is a vulnerability AND exploitable.",
+  "type": "object",
+  "required": ["id", "kind", "statement", "tests_control", "provenance"],
+  "properties": {
+    "id": { "$ref": "_defs#/$defs/finding_id" },
+    "kind": {
+      "enum": ["vulnerability", "misconfiguration", "gap", "audit-exception", "advisory", "observation"],
+      "description": "A vulnerability is an exploitable weakness. The rest are findings but not vulnerabilities."
+    },
+    "statement": { "type": "string", "minLength": 10 },
+    "tests_control": {
+      "$ref": "_defs#/$defs/control_code",
+      "description": "The control this finding tests. Required. The risk is the harm that control exists to prevent."
+    },
+    "exploitable": {
+      "enum": ["yes", "no", "undetermined"],
+      "description": "Only a vulnerability that is exploitable is SLA-bound; findings are not."
+    },
+    "exploit_basis": {
+      "type": "string",
+      "description": "Why exploitable: reachable from where, by whom, needing what. Required when exploitable = yes."
+    },
+    "severity": { "$ref": "_defs#/$defs/severity" },
+    "provenance_class": {
+      "enum": ["hard", "soft", "context"],
+      "description": "oDeshi provenance-driven severity. Hard = backed by two stakeholders or a domain authority; earns the right to block."
+    },
+    "sla": {
+      "type": "object",
+      "description": "Present ONLY when kind=vulnerability AND exploitable=yes.",
+      "properties": {
+        "due": { "$ref": "_defs#/$defs/date" },
+        "basis": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "signal_route": {
+      "type": "string",
+      "description": "Where this finding was routed: a control re-test, a decision re-open, a task. Never the register."
+    },
+    "source": {
+      "type": "object",
+      "description": "The producing scan, test, auditor, or monitor. No source, no fact.",
+      "properties": {
+        "tool": { "type": "string" },
+        "url": { "type": "string" },
+        "ref": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "status": { "enum": ["open", "routed", "closed"], "default": "open" },
+    "closed_state_change": {
+      "type": "string",
+      "description": "What changed in the thing measured, when closed. A finding re-opening with no state change is the 'staged green' sensor."
+    },
+    "provenance": { "$ref": "_defs#/$defs/provenance" }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "kind": { "const": "vulnerability" }, "exploitable": { "const": "yes" } },
+        "required": ["kind", "exploitable"]
+      },
+      "then": { "required": ["sla", "exploit_basis"] }
+    }
+  ],
+  "additionalProperties": false
+}

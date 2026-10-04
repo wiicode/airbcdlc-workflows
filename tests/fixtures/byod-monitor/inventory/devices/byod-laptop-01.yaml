@@ -1,0 +1,7 @@
+slug: byod-laptop-01
+owner_person: contractor-remote-01
+ownership: byod
+attestable: "no"
+lifecycle: active
+freshness: 2026-10-03
+provenance: { source: fixture byod-monitor, added: 2026-10-03, updated: 2026-10-03 }

@@ -1,0 +1,24 @@
+{
+  "describes": "Field guide §6.2 — the remote-support-tool breakdown. One parent, five branches, four dispositions (avoid/mitigate/accept/transfer + the governance-gap mitigate), a recorded Accept and Mitigate, a precedent and a constructed scenario. The clean, fully-decided case.",
+  "sensors_silent": [
+    "harm-sentence",
+    "single-response",
+    "control-link",
+    "owner-outside-security",
+    "tolerance-referenced",
+    "orphan-node",
+    "finding-not-risk",
+    "monitor-complete",
+    "decision-complete",
+    "premise-moved"
+  ],
+  "sensors_fire": [
+    "residual-from-control-health"
+  ],
+  "traces": [
+    { "node": "remote-support-tool", "harm": "H1" },
+    { "node": "R-014d", "harm": "H1" },
+    { "node": "R-014e", "harm": "H1" },
+    { "node": "VM1", "harm": "H1" }
+  ]
+}

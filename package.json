@@ -1,0 +1,26 @@
+{
+  "name": "airbcdlc-workflows",
+  "version": "0.1.0-m0",
+  "description": "AI-RBC-DLC — a Claude-only, git-based harness that builds risk-based control programs. Engine: TypeScript on Bun.",
+  "license": "MIT-0",
+  "type": "module",
+  "private": true,
+  "bin": { "rbc": "./bin/rbc" },
+  "scripts": {
+    "rbc": "bun run core/tools/src/cli.ts",
+    "test": "bun test",
+    "check": "bun run core/tools/src/cli.ts check",
+    "lint": "bun run core/tools/src/cli.ts lint",
+    "graph": "bun run core/tools/src/cli.ts graph compile --check"
+  },
+  "engines": { "bun": ">=1.1" },
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "yaml": "^2.6.0"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "typescript": "^5.6.0"
+  }
+}

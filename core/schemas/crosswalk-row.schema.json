@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://airbcdlc.dev/schema/crosswalk-row",
+  "title": "Crosswalk row",
+  "description": "One mapping between a program control and a framework criterion. The direction is controls → criteria. Carries a mapping status that gates what the audit-surface publish will accept.",
+  "type": "object",
+  "required": ["control", "framework", "criterion", "mapping_status", "provenance"],
+  "properties": {
+    "control": { "$ref": "_defs#/$defs/control_code" },
+    "framework": { "type": "string", "description": "Profile slug, e.g. nist-csf-2, soc2, pci-dss, iso-27001." },
+    "criterion": { "type": "string", "description": "The criterion/clause id within the framework. Never licensed text." },
+    "mapping_status": {
+      "enum": ["proposed", "derived", "validated"],
+      "description": "proposed (agent), derived (from doctrine), validated (human). The auditor surface refuses unvalidated rows."
+    },
+    "note": { "type": "string" },
+    "provenance": { "$ref": "_defs#/$defs/provenance" }
+  },
+  "additionalProperties": false
+}

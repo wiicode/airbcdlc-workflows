@@ -1,0 +1,9 @@
+slug: acc-contractor-code
+principal: contractor-remote-01
+system: code-and-data
+privilege: write
+auth: sso-mfa
+from_device_posture: byod
+lifecycle: active
+freshness: 2026-10-03
+provenance: { source: fixture byod-monitor, added: 2026-10-03, updated: 2026-10-03 }

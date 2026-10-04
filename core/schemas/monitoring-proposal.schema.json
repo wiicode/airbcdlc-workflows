@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://airbcdlc.dev/schema/monitoring-proposal",
+  "title": "Monitoring proposal",
+  "description": "A detection enters through this form, never as the response to a parent risk. It must name the parent, the branch, the half of the branch, the decision it supports, and what it cannot see.",
+  "type": "object",
+  "required": ["id", "parent", "branch", "half", "function", "supports_decision", "cannot_see", "provenance"],
+  "properties": {
+    "id": { "$ref": "_defs#/$defs/monitor_id" },
+    "parent": { "$ref": "_defs#/$defs/risk_id" },
+    "branch": { "$ref": "_defs#/$defs/branch_id" },
+    "half": {
+      "enum": ["pre-compromise", "post-compromise"],
+      "description": "Passive detection changes nothing about likelihood; it sits post-compromise unless it carries response authority."
+    },
+    "function": {
+      "type": "string",
+      "pattern": "^(DE|RS)\\.[A-Z]{2}-[0-9]{2}$",
+      "description": "DE.CM-xx / DE.AE-xx / RS.MI-xx."
+    },
+    "supports_decision": {
+      "type": "string",
+      "description": "Which response on which branch this monitor supports. A monitor that supports no decided branch is returned."
+    },
+    "business_case": { "type": "string", "description": "One line." },
+    "cannot_see": {
+      "type": "string",
+      "minLength": 10,
+      "description": "Written down, always. What this monitor structurally cannot observe (e.g. who is at the keyboard; a repository clone with a valid token; data copied locally)."
+    },
+    "has_response_authority": {
+      "type": "boolean",
+      "default": false,
+      "description": "True only for detection that can act (isolate a host, kill a process) — a genuine mitigation on the branch it covers."
+    },
+    "provenance": { "$ref": "_defs#/$defs/provenance" }
+  },
+  "additionalProperties": false
+}
