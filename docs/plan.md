@@ -102,7 +102,7 @@ Principles (from the author's platform, verbatim where it matters): entity-centr
 
 **Fourteen essential silos** — organization · people · devices · access · systems (+ shared catalog pattern) · vendors · data stores · policies · controls (library + implementation) · risks/decisions/tolerances/harms · evidence · tasks (assurance cadence) · findings/incidents/work log · training — plus conditional network estate, license posture, questionnaire fact store, knowledge. Each ships as `steering/inventory/<silo>.md` + JSON Schema + default rules (minimum fields and ingestion paths in v0.2 §5.2, unchanged).
 
-**Acquisition** is three stages: **sources-discovery** (the program's MCP configuration and files matched to adapter descriptors; a human approves the plan — discovery is agentic, ingestion deterministic), **ingest** per silo (raw snapshot → resolution → validation → provenance; CSV and Markdown first-class), **reconcile** (duplicates, orphans, cross-source disagreement, stale sources; coverage; needs-action queues). The Bento Platform is one adapter descriptor among others, living in the private overlay.
+**Acquisition** is three stages: **sources-discovery** (the program's MCP configuration and files matched to adapter descriptors; a human approves the plan — discovery is agentic, ingestion deterministic), **ingest** per silo (raw snapshot → resolution → validation → provenance; CSV and Markdown first-class), **reconcile** (duplicates, orphans, cross-source disagreement, stale sources; coverage; needs-action queues). The your-org platform is one adapter descriptor among others, living in the private overlay.
 
 ---
 
