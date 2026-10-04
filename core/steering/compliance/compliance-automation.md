@@ -1,11 +1,11 @@
 <!-- scope: steering · compliance · compliance automation and trust centers as the bridge, never the system of record. -->
 # Compliance automation and trust centers — the bridge, not the building
 
-**Status:** framework steering, working position 2026-10-02, from the author's operating opinion; becomes `steering/compliance/compliance-automation.md`. Companion: Addendum A (obligations, Why gate), Addendum B §2 (license classes; adapter contract), `steering/inventory/` (mirrors are temporary; link, don't merge).
+**Status:** framework steering, working position 2026-10-02, from practitioner doctrine; becomes `steering/compliance/compliance-automation.md`. Companion: Addendum A (obligations, Why gate), Addendum B §2 (license classes; adapter contract), `steering/inventory/` (mirrors are temporary; link, don't merge).
 
-## The desire, in the author's words
+## The desire, as a practitioner states it
 
-> We do compliance automation, trust center, and the complement of tools to simplify and expedite this stuff. It's the bridge between the org and the auditors. We steer away from it being the source of truth, or even a store for everything. This happens a lot — they think Vanta is the system of record. No. Vanta sees an edited picture of reality. It's the Instagram of your life. The real life happens elsewhere. You need your own platform and systems for that. Vanta is a snapshot.
+> A practitioner who sells and runs compliance automation and trust centers puts it this way: these tools are the bridge between the org and the auditors, and they must never become the source of truth, or even a store for everything. This happens a lot — they think Vanta is the system of record. No. Vanta sees an edited picture of reality. It's the Instagram of your life. The real life happens elsewhere. You need your own platform and systems for that. Vanta is a snapshot.
 
 ## The strategy, in one paragraph
 
@@ -50,7 +50,7 @@ A platform integrated into every cloud account, identity provider and HR system 
 
 ## What this is not
 
-Not a recommendation against compliance automation or trust centers — the author sells and runs them. Not a sync engine or a second copy of the platform's data. Not a claim that auditors should read git; they read the bridge, and the bridge is honest because it is derived.
+Not a recommendation against compliance automation or trust centers — practitioners who sell and run them hold this position. Not a sync engine or a second copy of the platform's data. Not a claim that auditors should read git; they read the bridge, and the bridge is honest because it is derived.
 
 ## Open items
 

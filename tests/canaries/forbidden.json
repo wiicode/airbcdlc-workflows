@@ -11,13 +11,13 @@
     ".claude/**/*.md"
   ],
   "forbidden": [
-    { "name": "airtable-base-id", "pattern": "\\bapp[A-Za-z0-9]{14}\\b" },
-    { "name": "airtable-table-id", "pattern": "\\btbl[A-Za-z0-9]{14}\\b" },
-    { "name": "airtable-field-id", "pattern": "\\bfld[A-Za-z0-9]{14}\\b" },
-    { "name": "airtable-select-id", "pattern": "\\bsel[A-Za-z0-9]{14}\\b" },
-    { "name": "airtable-record-id", "pattern": "\\brec[A-Za-z0-9]{14}\\b" },
-    { "name": "drata-dcf-code", "pattern": "\\bDCF-\\d+\\b" },
-    { "name": "bento-brand", "pattern": "\\bBento\\b" },
+    { "name": "lowcode-base-id", "pattern": "\\bapp[A-Za-z0-9]{14}\\b" },
+    { "name": "lowcode-table-id", "pattern": "\\btbl[A-Za-z0-9]{14}\\b" },
+    { "name": "lowcode-field-id", "pattern": "\\bfld[A-Za-z0-9]{14}\\b" },
+    { "name": "lowcode-select-id", "pattern": "\\bsel[A-Za-z0-9]{14}\\b" },
+    { "name": "lowcode-record-id", "pattern": "\\brec[A-Za-z0-9]{14}\\b" },
+    { "name": "grc-control-code", "pattern": "\\bDCF-\\d+\\b" },
+    { "name": "org-brand", "pattern": "\\bBento\\b" },
     { "name": "licensed-text-marker", "pattern": "\\[LICENSED-TEXT\\]" }
   ],
   "licensed_text_guard": {
@@ -29,5 +29,5 @@
     "never the author's own",
     "customer names"
   ],
-  "note": "docs/ is excluded from the scan on purpose: it carries the plan and provenance, where the author's platform is named as context. Shipped STEERING, SCHEMAS, AGENTS, STAGES and CODE must be clean."
+  "note": "docs/ is excluded from the scan on purpose: it carries the plan and provenance, where provenance is given as context. Shipped STEERING, SCHEMAS, AGENTS, STAGES and CODE must be clean."
 }

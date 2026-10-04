@@ -1,14 +1,14 @@
 # AI-RBCDLC — Addendum A: Compliance is an input, never an origin
 
-**Status:** working position 2026-10-02, drafted from the author's grounding rules; to be folded into plan v0.3. Companion: `AI-RBCDLC-PLAN-v0.2.md` §4 (steering), §6 (controls), §7 (risk), §8 (stages).
+**Status:** working position 2026-10-02, drafted from practitioner grounding rules; to be folded into plan v0.3. Companion: `AI-RBCDLC-PLAN-v0.2.md` §4 (steering), §6 (controls), §7 (risk), §8 (stages).
 
-## The problem, in the author's words
+## The problem, as a practitioner states it
 
 > "Many security programs start with a compliance catalog and erroneously work backwards. 'We need a pentest for compliance.' 'Show me evidence of infrastructure scans.' Something about PCI. These surface first, with no connection to business need, architecture, or what customers want, and they become a drag on security operations. Compliance automation makes it worse — compliance in a box. 'We are secure because we bought Vanta.' 'Vanta told us to.' The platform gets declared authoritative."
 
 The harness has to claw that position away. Not by refusing compliance — attestations are real business obligations — but by making every compliance demand answer *why*, *for whom*, *at what cost*, and *which harm or obligation it serves* before it can become a control, a task, or an SLA.
 
-## The grounding rules (the author's five, with what each implies for the harness)
+## The grounding rules (a practitioner's five, with what each implies for the harness)
 
 **1. SOC 2 Type 2 is an attestation.** It proves your controls operate, over a period. They are *your* controls; you decide what works. An auditor's say is limited to whether the attestation will survive their own firm's peer review.
 → The program's catalogue is authored by the program, in the Shape, justified by harms and obligations. SOC 2's Trust Services Criteria are a **crosswalk target** and an **obligation source** — never a catalogue. An auditor request enters as an obligation with `source: auditor`; the response distinguishes "this makes the attestation defensible" (satisfy) from "this redesigns our control" (push back, record why).
@@ -82,7 +82,7 @@ One compliance ask became one obligation with a disposition, one real risk with 
 
 ## Compliance automation platforms — their place
 
-Doctrine the platform study already found in the author's practice: *"We decide what the checks are about; the platform clicks."* Expanded for the harness:
+Doctrine observed in field practice: *"We decide what the checks are about; the platform clicks."* Expanded for the harness:
 
 - **What a CA platform is good for:** collecting evidence on cadence; presenting it to an auditor; flagging drift in things it can see (a disabled MFA policy, a missing disk encryption flag). Its monitors are **findings** — inputs to control testing — never risks and never controls.
 - **What it is not:** an authority on control design; the risk register ("treatment decisions stay in the platform" is the failure mode); the catalogue (its control library is a *control source* under plan §6.5 — a seed to be re-shaped and justified, not the program); a security posture ("secure because we bought it" is the anti-pattern by name).

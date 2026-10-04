@@ -1,7 +1,7 @@
 <!-- scope: steering · inventory · the people silo: why, minimum fields, sources, joins, freshness, attention. -->
 # People — the identity roster, and why every security question ends here
 
-**Status:** framework steering, working position 2026-10-01; derived from the author's platform practice; not yet reviewed by the author. Companion: `schemas/people.schema.json`, `rules/people.defaults.yaml`, `steering/inventory/devices.md`, `steering/inventory/access.md`.
+**Status:** framework steering, working position 2026-10-01; derived from field practice; not yet reviewed by the author. Companion: `schemas/people.schema.json`, `rules/people.defaults.yaml`, `steering/inventory/devices.md`, `steering/inventory/access.md`.
 
 ## The desire, in the author's words
 

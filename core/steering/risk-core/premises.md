@@ -32,7 +32,7 @@ Worked example: a branch is **Accept**ed because `acme-vendor.oversight = signed
 - The `business-owner` tests them in review (an unverifiable premise is a weak decision).
 - The engine resolves them against live records at every gate.
 
-This generalizes the author's platform "evidence-mask" pattern: a conclusion is valid only while the evidence under it holds, and the system knows when it stops holding.
+This generalizes a field-practice "evidence-mask" pattern: a conclusion is valid only while the evidence under it holds, and the system knows when it stops holding.
 
 ## What this is not
 

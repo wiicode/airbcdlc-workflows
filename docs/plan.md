@@ -11,12 +11,12 @@ A Claude-only, git-based harness that *builds* a risk-based control program for 
 
 | # | Decision | Status |
 | --- | --- | --- |
-| D1 | Everything lives in git. No Airtable, no inventory database, no platform as store, in the finished product. | **DECIDED 2026-10-01 (Karl)** |
+| D1 | Everything lives in git. No low-code database, no inventory database, no platform as store, in the finished product. | **DECIDED 2026-10-01 (Karl)** |
 | D2 | Engine: TypeScript on Bun. | **DECIDED 2026-10-01 (Karl)** |
-| D3 | Public core; private overlays. Must serve four contexts: personal, open-source framework, commercial, day-job safe. | **DECIDED 2026-10-01 (Karl)** |
+| D3 | Public core; private overlays. Must serve four contexts: personal, open-source framework, commercial, neutral-workplace safe. | **DECIDED 2026-10-01 (Karl)** |
 | D4 | Product name **AI-RBC-DLC**; repository **`airbcdlc-workflows`** (mirroring AWS's `aidlc-workflows`); license **MIT-0** (as AI-DLC, which lets us borrow its patterns and code). | **DECIDED 2026-10-02 (Karl)** |
 | D5 | Canonical control-domain taxonomy: the author's. The 14-domain list in §7.5 is the working crosswalk until the author's file replaces it. | **DECIDED 2026-10-02 (Karl)** |
-| D6 | Controls as **Shape + Doctrine + Coverage + Exemplars + Sources**, compiled per program by the **Control Compiler**; the author's catalogue is an optional, unadvertised source published at your-org.example (index tier free, full tier commercial). | **DECIDED 2026-10-02 (Karl)** |
+| D6 | Controls as **Shape + Doctrine + Coverage + Exemplars + Sources**, compiled per program by the **Control Compiler**; an external control catalogue is an optional, unadvertised source (a framework profile or control source, never core content). | **DECIDED 2026-10-02 (Karl)** |
 | D7 | Compliance is an **input** (the Obligation), never an origin; a dedicated **compliance module** (profiles · advisor · compile recipes · obligations). | **DECIDED 2026-10-02 (Karl)** |
 | D8 | Compliance platforms and trust centers are **publication targets** — the bridge to auditors and prospects — never the system of record. "Vanta is a snapshot." | **DECIDED 2026-10-02 (Karl)** |
 | D9 | A **risk core**: every node backs out to a small fixed set of top-level harms; the **Intake Reflex** engages and leads back. | **DECIDED 2026-10-02 (Karl)** |
@@ -30,16 +30,16 @@ A Claude-only, git-based harness that *builds* a risk-based control program for 
 
 ## 1. Mission
 
-AI-DLC contains no application; it contains the method that builds applications. AI-RBC-DLC contains no security program; it contains the method that builds security programs. A company runs `/rbc` in an empty repository and comes out with a governed, inventory-grounded, risk-decided, evidence-producing program that lives entirely in git and looks — in structure, judgment and voice — like a program the author would have built, while every record in it is the company's own. The framework steers hard about what inventory to acquire, what a control must contain, how a risk is written and decided, who owns what, what cadence runs, and what compliance is for. It never hands over the author's catalogue, and it works with it when offered.
+AI-DLC contains no application; it contains the method that builds applications. AI-RBC-DLC contains no security program; it contains the method that builds security programs. A company runs `/rbc` in an empty repository and comes out with a governed, inventory-grounded, risk-decided, evidence-producing program that lives entirely in git and looks — in structure, judgment and voice — like a program the author would have built, while every record in it is the company's own. The framework steers hard about what inventory to acquire, what a control must contain, how a risk is written and decided, who owns what, what cadence runs, and what compliance is for. It never hands over anyone's catalogue, and it works with one when offered.
 
 ### 1.1 Four deployment contexts (requirements)
 
 | Context | Demand on the design |
 | --- | --- |
 | Personal | Full fidelity to the method; the author is a customer of his own harness. |
-| Open-source framework (your-org.example) | Generic vocabulary in core; taxonomy, maturity dial and catalogue arrive as a framework profile / control source. |
-| Commercial (your-org platform) | Adapter *contract* in core; the your-org adapter, branding and defaults in a private overlay. |
-| Day-job safe | No your-org nouns, customer names, identifiers, brand or commercial doctrine in core; programs isolated; nothing phones home; no catalogue inferable from shipped files. A leak test runs in CI. |
+| Open-source framework | Generic vocabulary in core; taxonomy, maturity dial and catalogue arrive as a framework profile / control source. |
+| Commercial overlay | Adapter *contract* in core; any organization's adapter, branding and defaults live in its private overlay. |
+| Neutral-workplace safe | No your-org nouns, customer names, identifiers, brand or commercial doctrine in core; programs isolated; nothing phones home; no catalogue inferable from shipped files. A leak test runs in CI. |
 
 ---
 
@@ -98,7 +98,7 @@ Loaded ambiently via `.claude/rules/rbc.md` @-imports and per stage via each sta
 
 ## 4. Inventory — opinionated acquisition, customer-owned data
 
-Principles (from the author's platform, verbatim where it matters): entity-centric never tool-centric ("tool views are evidence about an entity, not the entity"); mirrors are temporary — "link, don't merge"; slugs and names as join keys; provenance on every record; lifecycle enums with intent states, retire never delete; freshness is a field and staleness is an exception; reconciliation is first-class and coverage is a metric; rules are data with framework defaults; attention-first ("a surfaced entity with no stated reason and no attached action is a bug"); no source, no fact.
+Principles (from field practice): entity-centric never tool-centric ("tool views are evidence about an entity, not the entity"); mirrors are temporary — "link, don't merge"; slugs and names as join keys; provenance on every record; lifecycle enums with intent states, retire never delete; freshness is a field and staleness is an exception; reconciliation is first-class and coverage is a metric; rules are data with framework defaults; attention-first ("a surfaced entity with no stated reason and no attached action is a bug"); no source, no fact.
 
 **Fourteen essential silos** — organization · people · devices · access · systems (+ shared catalog pattern) · vendors · data stores · policies · controls (library + implementation) · risks/decisions/tolerances/harms · evidence · tasks (assurance cadence) · findings/incidents/work log · training — plus conditional network estate, license posture, questionnaire fact store, knowledge. Each ships as `steering/inventory/<silo>.md` + JSON Schema + default rules (minimum fields and ingestion paths in v0.2 §5.2, unchanged).
 
@@ -174,8 +174,8 @@ The author's 124 controls share a strict anatomy; that anatomy is the proprietar
 - **7.2 Doctrine (open, written with the author).** `steering/domains/<domain>.md`: the harms the domain prevents (the tree edge), standing conditions typical at 50–500, Baseline vs Advancing, exclusions, the evidence that proves it, over-commitment traps, the maturity ladder with the domain's own level names, and the **ask → risk table** the Intake Reflex reads.
 - **7.3 Coverage (open).** `coverage/<domain>.yaml`: what a complete domain addresses, as expectations with the intermediate harms they treat and the maturity at which they are expected. A program is measured against coverage; gaps are findings about the catalogue, never auto-filled.
 - **7.4 Exemplars (open).** Three to six fully worked, generic controls as the quality bar.
-- **7.5 Sources (pluggable, optional).** `rbc source add <path|url>`: compliance-platform exports, CSV, or a published catalogue (the author's, index tier free and unadvertised at your-org.example; full tier commercial). A source *accelerates* `catalogue-adoption`; nothing is copied verbatim without the gate. Canonical domain taxonomy: the author's (D5); working crosswalk — Governance & Organization (OM, IT) · Risk Management (RM) · Human Resources (HR) · Awareness & Training (AT) · Identity & Access (AA, AC) · Change Management & SDLC (CM, SO18–20, SS) · Security Operations (SO) · Endpoints & Workstations (WS) · Data Security (DS) · Data Privacy (DP) · Continuity & Resilience (CR) · Incident Management (IM) · Vendor Management (VM) · Process Integrity (PI).
-- **7.6 The Control Compiler.** `coverage expectation × domain doctrine × shape × the program's INVENTORY × tolerances & maturity target → draft → control-author grades; business-owner objects (STRONGEST OBJECTION + FALSIFIER) → human gate → controls/library + controls/implementation`. Law of the compiler, from the author's platform: **"Ground strictly in the provided inventory — never assume tools they don't have."** Implementation records carry `current_state`, `future_state[]`, `implementation_pct`, `coverage ∈ {active, planned, parked, blocked, at-risk}` (Parked is legitimate), `systems_in_scope[]`, `maturity_level`, `ca_bindings[]`. Template + assignment, never duplication.
+- **7.5 Sources (pluggable, optional).** `rbc source add <path|url>`: compliance-platform exports, CSV, or an externally published catalogue. A source *accelerates* `catalogue-adoption`; nothing is copied verbatim without the gate. Canonical domain taxonomy: the author's (D5); working crosswalk — Governance & Organization (OM, IT) · Risk Management (RM) · Human Resources (HR) · Awareness & Training (AT) · Identity & Access (AA, AC) · Change Management & SDLC (CM, SO18–20, SS) · Security Operations (SO) · Endpoints & Workstations (WS) · Data Security (DS) · Data Privacy (DP) · Continuity & Resilience (CR) · Incident Management (IM) · Vendor Management (VM) · Process Integrity (PI).
+- **7.6 The Control Compiler.** `coverage expectation × domain doctrine × shape × the program's INVENTORY × tolerances & maturity target → draft → control-author grades; business-owner objects (STRONGEST OBJECTION + FALSIFIER) → human gate → controls/library + controls/implementation`. Law of the compiler, from field practice: **"Ground strictly in the provided inventory — never assume tools they don't have."** Implementation records carry `current_state`, `future_state[]`, `implementation_pct`, `coverage ∈ {active, planned, parked, blocked, at-risk}` (Parked is legitimate), `systems_in_scope[]`, `maturity_level`, `ca_bindings[]`. Template + assignment, never duplication.
 
 ---
 
@@ -264,7 +264,7 @@ Also carried: the Intake command's read-before-scope, stated rationale, confirm-
 
 Borrow AI-DLC's patterns, not its surface: `graph compile --check` · `orchestrate next/report` · state and audit shards · `schema validate` (JSON Schema 2020-12) · `sensors run` · `views compile` · `sources` (descriptors, MCP discovery, CSV/MD importers, mirrors, resolution) · `control-source fetch` · `trace / tree` · `publish` (compliance platform, trust center) · hooks (session-start, write-audit-log, run-sensors, state-transition-guard, plan-approval-guard). Dropped: swarm, bolts, walking skeleton, CI/deploy stages, testing contracts, worktree merge-back.
 
-Plugins and profiles: **framework profile** (domains, codes, maturity-level names, crosswalks — generic in core; the public framework at your-org.example ships its own); **control source**; **adapter descriptor** (reads and publishes declared separately; no descriptor reads authored content; the your-org platform descriptor is in the private overlay); **overlay plugin** (branding, defaults, extra personas/stages; `your-org-overlay` is private). Three **license classes** enforced by the engine; a sensor refuses commits containing licensed text; the leak test runs in CI on core.
+Plugins and profiles: **framework profile** (domains, codes, maturity-level names, crosswalks — generic in core; an external framework publisher ships its own); **control source**; **adapter descriptor** (reads and publishes declared separately; no descriptor reads authored content; the your-org platform descriptor is in the private overlay); **overlay plugin** (branding, defaults, extra personas/stages; `your-org-overlay` is private). Three **license classes** enforced by the engine; a sensor refuses commits containing licensed text; the leak test runs in CI on core.
 
 ---
 
