@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+- `core/steering/house-rules/agent-trust-boundary.md` — how the harness's own agents are bounded: the deciding question, authorize-the-operation-never-hand-the-secret, overrides change voice never authority (`overrides-lint` planned), exploration as candidate evidence, tested kill switch before any writing adapter.
+- `core/steering/inventory/agents.md` — the agents silo: `agent` and `agent-connection` records, the three identity layers, effective-access reconciliation, attention rows; schemas deferred to M1.
+- `core/steering/domains/ai-agents.md` — the first domain file: harms edge, ask → risk table, the ten questions, six coverage expectations, the autonomy ladder with gates.
+- `core/steering/program/ai-first-operating-model.md` — the thesis in four forms, crawl/walk/run mapped onto the harness, policy vs operating layer, intake in days, reachability, before/after, measures as candidate views, architecture/operations split.
+- `core/steering/house-rules/voice.md` — new "Speaking to leadership" section (six beats, audience table, language, writing standards); READMEs for program, domains, inventory and house-rules list the new files.
+
 ## 0.0.1 — 2026-10-02
 - Pre-M0 skeleton: layout, plan v0.3, addenda A/B, PCI posture ladder, compliance-automation steering, People inventory steering, framework profile schema, the field guide as method source. No engine yet.
 
