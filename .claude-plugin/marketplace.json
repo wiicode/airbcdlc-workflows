@@ -1,0 +1,13 @@
+{
+  "name": "airbcdlc",
+  "owner": {
+    "name": "Karl Jankowski"
+  },
+  "plugins": [
+    {
+      "name": "aiciso",
+      "source": "./",
+      "description": "Satoru — the /aiciso. A Claude-only, git-based AI CISO that runs AI-RBC-DLC (AI Risk-Based Control Development Life Cycle): it places any security concern on a risk tree, breaks it down, and leads to a decided, owned, recorded risk. It never decides for you, issues a certificate, or says 'in place'."
+    }
+  ]
+}

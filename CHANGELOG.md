@@ -1,6 +1,12 @@
 # Changelog
 
 ## Unreleased
+- **Installable plugin (front door, review finding PC-1)**: the `/aiciso` skill moved from `.claude/skills/aiciso/` to `skills/aiciso/` (plugin-root convention) so the plugin manifest actually ships it; `claude plugin details` now lists `Skills (1) aiciso`.
+- `.claude-plugin/marketplace.json` — self-marketplace `airbcdlc` (plugin `aiciso`, source `./`), mirroring oDeshi; install with `claude plugin marketplace add wiicode/airbcdlc-workflows` + `claude plugin install aiciso@airbcdlc`.
+- `.claude-plugin/plugin.json` — added `repository`, `homepage`, `keywords`.
+- `bin/rbc` is now executable (mode 100755; review finding ENG-13) so `bun link` exposes a working `rbc`.
+- `tests/canaries/forbidden.json` — `skills/**/*.md` added to `scan_globs` so the moved skill stays leak-tested.
+- README: Quickstart replaced by an **Installation** section (Bun → clone + `bun link` → marketplace → plugin → `rbc init` → `/aiciso`), plus Upgrading, Uninstall and Developing-the-harness subsections; notes the unresolved `.claude/rules/rbc.md` steering imports (`--add-dir` workaround).
 - `core/steering/house-rules/agent-trust-boundary.md` — how the harness's own agents are bounded: the deciding question, authorize-the-operation-never-hand-the-secret, overrides change voice never authority (`overrides-lint` planned), exploration as candidate evidence, tested kill switch before any writing adapter.
 - `core/steering/inventory/agents.md` — the agents silo: `agent` and `agent-connection` records, the three identity layers, effective-access reconciliation, attention rows; schemas deferred to M1.
 - `core/steering/domains/ai-agents.md` — the first domain file: harms edge, ask → risk table, the ten questions, six coverage expectations, the autonomy ladder with gates.

@@ -4,24 +4,89 @@
 
 AI-DLC (`aidlc-workflows`) contains no application; it contains the method that builds applications. This repository contains no security program; it contains the method that builds security programs.
 
-> **Status: M0 (0.1.0-m0) — the engine runs.** Schemas, risk-core steering, the three mandatory personas, the deterministic engine, the `/aiciso` conductor skill, the `breakdown` scope, 11 sensors, and CI are all here and green. The field guide's two worked examples reproduce, and "we'll monitor BYOD" walks to regulatory/legal exposure with the laptop-farm branch named. Start with `docs/plan.md`, then run the quickstart.
+> **Status: M0 (0.1.0-m0) — the engine runs.** Schemas, risk-core steering, the three mandatory personas, the deterministic engine, the `/aiciso` conductor skill, the `breakdown` scope, 11 sensors, and CI are all here and green. The field guide's two worked examples reproduce, and "we'll monitor BYOD" walks to regulatory/legal exposure with the laptop-farm branch named. Start with `docs/plan.md`, then follow the installation steps.
 
-## Quickstart
+## Installation
+
+Satoru ships as a Claude Code plugin from this repository's own marketplace, plus a small Bun CLI (`rbc`) that scaffolds and checks a program repo. Six steps.
+
+**1. Install Bun** (the engine's runtime; see [bun.sh](https://bun.sh) for other platforms).
 
 ```bash
-bun install
+curl -fsSL https://bun.sh/install | bash
+```
 
-# scaffold a program repo and explore the tree
-mkdir ../acme && cd ../acme
-bun run /path/to/airbcdlc-workflows/core/tools/src/cli.ts init
-rbc validate                       # every record schema-checked
-rbc tree H1                        # a top-level harm's subtree
-rbc trace <tool|control|branch>    # walk any node up to its root harm
-rbc sensors                        # the deterministic checks
+**2. Clone the harness and put `rbc` on your PATH.**
 
-# the harness's own CI
-cd /path/to/airbcdlc-workflows
+```bash
+git clone https://github.com/wiicode/airbcdlc-workflows.git && cd airbcdlc-workflows && bun install && bun link
+```
+
+**3. Add the marketplace.** From GitHub:
+
+```bash
+claude plugin marketplace add wiicode/airbcdlc-workflows
+```
+
+A local checkout works too — point at the clone from step 2 (`claude plugin marketplace add /path/to/airbcdlc-workflows`). Either way the marketplace registers as `airbcdlc`.
+
+**4. Install the plugin.**
+
+```bash
+claude plugin install aiciso@airbcdlc
+```
+
+**5. Scaffold a program repo** for your company (any directory name).
+
+```bash
+mkdir acme && cd acme && rbc init
+```
+
+**6. Start Claude Code in that directory and talk to Satoru.**
+
+```bash
+claude
+```
+
+Then type:
+
+```
+/aiciso we'll monitor BYOD
+```
+
+> **Known gap (M0):** the scaffolded program's `.claude/rules/rbc.md` steering imports do not resolve yet — they point into the harness, not the program repo (tracked in the M0 review). Until that lands, start Claude Code with `claude --add-dir /path/to/airbcdlc-workflows` so the steering is reachable.
+
+Inside the program repo, `rbc validate` schema-checks every record, `rbc tree H1` shows a top-level harm's subtree, `rbc trace <tool|control|branch>` walks any node up to its root harm, and `rbc sensors` runs the deterministic checks.
+
+### Upgrading
+
+```bash
+cd /path/to/airbcdlc-workflows && git pull
+```
+
+```bash
+claude plugin marketplace update airbcdlc
+```
+
+### Uninstall
+
+```bash
+claude plugin uninstall aiciso@airbcdlc
+```
+
+```bash
+claude plugin marketplace remove airbcdlc
+```
+
+### Developing the harness
+
+Iterate on the plugin without installing it by loading the working tree directly (`claude --plugin-dir /path/to/airbcdlc-workflows`), and run the harness's own CI from the repo root:
+
+```bash
 bun run core/tools/src/cli.ts check   # lint + leak-test + graph + fixtures
+```
+
+```bash
 bun test                              # sensor mutation canaries
 ```
 
@@ -31,6 +96,9 @@ bun test                              # sensor mutation canaries
 
 ```
 docs/                 plan v0.3; addenda (compliance as input; the compliance module)
+.claude-plugin/       plugin.json + marketplace.json (install with `claude plugin marketplace add` / `plugin install`)
+skills/aiciso/        the /aiciso conductor skill (Satoru) — the plugin's only skill
+bin/rbc               the CLI entry (`bun link` exposes it as `rbc`)
 core/
   steering/           HOW THE AUTHOR THINKS — framework steering, loaded into every stage
     method/           the field guide (source doctrine); vocabulary, breakdown, anti-patterns, refusals
